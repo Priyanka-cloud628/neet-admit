@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEET (UG) 2026 - Admit Card Provisional</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .container {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .header {
+    background: #1a3c8f;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .login-box {
+    padding: 25px;
+  }
+  label {
+    display: block;
+    margin: 12px 0 5px;
+    font-weight: 600;
+    color: #333;
+  }
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+  .login-btn {
+    width: 100%;
+    padding: 14px;
+    background: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .security-pin {
+    color: green;
+    font-weight: bold;
+  }
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    National Eligibility Cum Entrance Test (UG) - 2026<br>
+    <strong>Admit Card Provisional</strong>
+  </div>
+
+  <div class="login-box">
+    <h3>Candidate Login</h3>
+    
+    <label>Application Number</label>
+    <input type="text" id="appno" placeholder="Enter Application Number" maxlength="12">
+
+    <label>Enter Password</label>
+    <input type="password" id="pass" placeholder="Enter Password">
+
+    <label>Enter Security Pin</label>
+    <input type="text" id="pin" placeholder="Enter Security Pin" maxlength="6">
+
+    <p>Security Pin: <span class="security-pin" id="showPin">QS539Y</span> 
+       <button onclick="refreshPin()" style="border:none;background:none;cursor:pointer;font-size:16px;">🔄</button></p>
+
+    <div id="errorMsg" class="error"></div>
+
+    <button class="login-btn" onclick="login()">Login</button>
+  </div>
+</div>
+
+<script>
+// ================== YAHAN APNI DETAILS DAALO ==================
+const correctAppNo = "260410328741";     // ← Apna Application Number yahan daalo
+const correctPassword = "Priyanka@123";   // ← Yahan apna Password daalo (jo chahe)
+
+const pdfLink = "https://examinationservicesadmitcardserviceadmitcardne.tiiny.site";   // ← Yahan apna PDF link daalo
+
+function refreshPin() {
+  const pins = ["QS539Y", "AB728K", "XY912P", "MN453T", "NEET2026"];
+  const random = pins[Math.floor(Math.random() * pins.length)];
+  document.getElementById('showPin').textContent = random;
+}
+
+function login() {
+  const appno = document.getElementById('appno').value.trim();
+  const pass = document.getElementById('pass').value.trim();
+  const pin = document.getElementById('pin').value.trim();
+  const errorMsg = document.getElementById('errorMsg');
+
+  errorMsg.textContent = "";
+
+  if (appno === "" || pass === "" || pin === "") {
+    errorMsg.textContent = "Sab fields bharna zaroori hai!";
+    return;
+  }
+
+  if (appno === correctAppNo && pass === correctPassword) {
+    window.open(pdfLink, "_blank");   // PDF khulega
+  } else {
+    errorMsg.textContent = "Invalid Application Number or Password!";
+  }
+}
+</script>
+
+</body>
+</html>
